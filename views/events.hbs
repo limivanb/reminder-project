@@ -1,0 +1,67 @@
+{{> head}}
+<body>
+  {{> menus}}
+  <div class="ui internally celled grid">
+    <div class="row">
+      <div class="twelve wide centered column">
+        <h1 class="ui header">Events</h1>
+        <div class="ui secondary menu">
+          <a class="item">
+            <button class="positive ui button">New Event</button>
+          </a>
+          <div class="right menu">
+            <a class="ui item">
+              <select class="ui search dropdown">
+                <option value="">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </a>
+          </div>
+        </div>
+
+        <div id="event_list">
+          <table class="ui single line table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Activity Name</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Lilki</td>
+                <td>September 14, 2013</td>
+                <td>jhlilk22@yahoo.com</td>
+              </tr>
+              <tr>
+                <td>Jamie Harington</td>
+                <td>January 11, 2014</td>
+                <td>jamieharingonton@yahoo.com</td>
+              </tr>
+              <tr>
+                <td>Jill Lewis</td>
+                <td>May 11, 2014</td>
+                <td>jilsewris22@yahoo.com</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

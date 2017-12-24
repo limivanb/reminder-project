@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Event Reminder</title>
+  <meta name="description" content="Iloilo Philippines Stake Chat Bot Announcement Project">
+  <meta name="author" content="Ivan Lim">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="semantic/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/site.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/container.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/grid.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/header.css">
+  <link rel="stylesheet" type="text/css" href="semantict/components/image.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="semantic/components/divider.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/segment.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/button.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/list.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/transition.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/table.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="semantic/components/semantic.min.js"></script>
+    <script src="semantic/components/visibility.js"></script>
+    <script src="semantic/components/sidebar.js"></script>
+    <script src="semantic/components/transition.js"></script>
+      <script src="semantic/components/dropdown.js"></script>
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="ui attached stackable menu">
+    <div class="ui container">
+      <a class="item"><i class="home icon"></i> Home</a>
+      <a class="item"><i class="calendar icon"></i> Events</a>
+      <a class="item"><i class="mail icon"></i> Announcement</a>
+      <a class="right item">
+        <a class="item"><i class="user icon"></i> Logout</a>
+      </a>
+    </div>
+  </div>
+
+  <div class="ui internally celled grid">
+    <div class="row">
+      <div class="twelve wide centered column">
+        <h1 class="ui header">Events</h1>
+        <div class="ui secondary menu">
+          <a class="item">
+            <button class="positive ui button">Create Event</button>
+          </a>
+          <div class="right menu">
+            <a class="ui item">
+              <select class="ui search dropdown">
+                <option value="">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </a>
+          </div>
+        </div>
+
+        <div id="event_list">
+          <table class="ui single line table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Activity Name</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Lilki</td>
+                <td>September 14, 2013</td>
+                <td>jhlilk22@yahoo.com</td>
+              </tr>
+              <tr>
+                <td>Jamie Harington</td>
+                <td>January 11, 2014</td>
+                <td>jamieharingonton@yahoo.com</td>
+              </tr>
+              <tr>
+                <td>Jill Lewis</td>
+                <td>May 11, 2014</td>
+                <td>jilsewris22@yahoo.com</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
