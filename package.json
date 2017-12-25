@@ -11,6 +11,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "hbs": "^4.0.1",
+    "mongodb": "^3.0.0",
+    "mongoose": "^4.13.7",
     "semantic-ui": "^2.2.13"
   }
 }

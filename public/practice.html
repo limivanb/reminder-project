@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Event Reminder</title>
+  <meta name="description" content="Iloilo Philippines Stake Chat Bot Announcement Project">
+  <meta name="author" content="Ivan Lim">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/transition.css">
+  <link rel="stylesheet" type="text/css" href="semantic/components/modal.css">
+
+</head>
+
+<body>
+
+  <button id="btnNewEvent" class="positive ui button">New Event</button>
+
+  <div id="frmEventEntry" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      New Event
+    </div>
+    <div class="image content">
+
+    </div>
+    <div class="actions">
+      Test form
+    </div>
+  </div>
+
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="semantic/components/semantic.min.js"></script>
+  <script src="semantic/components/dropdown.js"></script>
+  <script src="semantic/components/transition.js"></script>
+  <script src="semantic/components/modal.js"></script>
+  <script src="semantic/components/dimmer.js"></script>
+  
+  <script type="text/javascript">
+      $(document).ready(() => {
+
+          //$('#cboMonth').dropdown();
+          alert('sdf');
+          $('#btnNewEvent').click(function(){
+            alert('test');
+              alert($('#frmEventEntry').html());
+              $('#frmEventEntry').modal('show');
+           });
+
+      });
+  </script>
+</body>
+</html>

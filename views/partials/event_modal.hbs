@@ -1,0 +1,28 @@
+<div id="frmEventEntry" class="ui small modal">
+  <div class="header">
+    New Event
+  </div>
+  <div class="image content">
+    <div class="image"></div>
+    <form id="frmEventAdd" class="ui form" method="POST" action="/events" >
+      <div class="description">
+            <div class="field">
+              <label>Activity Date</label>
+              <input name="event_date" placeholder="Date..." type="text" size="50">
+            </div>
+            <div class="field">
+              <label>Activity Name</label>
+              <input name="event_name" placeholder="Event..." type="text" size="50">
+            </div>
+            <div class="field">
+              <label>Location</label>
+              <input name="location" placeholder="Location..." type="text" size="50">
+            </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <button class="ui button" type="button">Cancel</button>
+    <button id="btnCreateEvent" class="ui positive button" type="button">Create Event</button>
+  </div>
+</div>
