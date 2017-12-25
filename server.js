@@ -4,6 +4,7 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+// const dateTime = require('node-datetime');
 
 var {Event} = require('./models/event');
 
@@ -12,6 +13,14 @@ mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 var app = express();
+
+// app.use((request, response, next) => {
+//   var dt = dateTime.create();
+//   var formatted = dt.format('Y-m-d H:M:S');
+//   console.log(formatted);
+//
+//   next();
+// })
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine','hbs');
