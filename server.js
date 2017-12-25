@@ -27,6 +27,7 @@ app.get('/events', (request, response) => {
 
   Event.find().then((events) => {
     response.render('events.hbs', {
+      current_date: new Date().toString(),
       event_list: events
     })
   });
