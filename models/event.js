@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Event = mongoose.model('Event', {
+var eventSchema = mongoose.Schema({
   event_date: {
     type: String,
     required: true
@@ -17,5 +17,7 @@ var Event = mongoose.model('Event', {
     required: true
   }
 });
+
+var Event = mongoose.model('Event', eventSchema);
 
 module.exports = {Event};
