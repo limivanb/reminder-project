@@ -2,7 +2,7 @@ $(document).ready(() => {
     $('#cboMonth').dropdown();
 
     $('#btnNewEvent').click(() => $('#frmEventEntry').modal('show') );
-
+    $('#btnCancel').click(() => $('#frmEventEntry').modal('hide'));
      $('#btnCreateEvent').click(function(e){
          e.preventDefault();
         $.ajax({
