@@ -12,6 +12,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
+var db = mongoose.connection;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
