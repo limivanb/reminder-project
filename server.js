@@ -14,14 +14,6 @@ mongoose.Promise = global.Promise;
 
 var app = express();
 
-// app.use((request, response, next) => {
-//   var dt = dateTime.create();
-//   var formatted = dt.format('Y-m-d H:M:S');
-//   console.log(formatted);
-//
-//   next();
-// })
-
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine','hbs');
 
@@ -30,21 +22,6 @@ app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
   response.render('home.hbs');
-});
-
-app.get('/events', (request, response) => {
-
-  Event.find().then((events) => {
-    response.render('events.hbs', {
-      current_date: new Date().toString(),
-      event_list: events
-    })
-  });
-
-});
-
-app.get('/announcements', (request, response) => {
-  response.render('announcements.hbs');
 });
 
 app.post('/events', (request, response) => {
@@ -61,6 +38,53 @@ app.post('/events', (request, response) => {
     response.status(400).send(e);
   });
 });
+
+app.get('/events/list', (request, response) => {
+
+  Event.find().then((events) => {
+    response.status(200).send({events});
+  });
+
+});
+
+app.get('/events', (request, response) => {
+
+  Event.find().then((events) => {
+    response.render('events.hbs', {
+      current_date: new Date().toString(),
+      event_list: events
+    })
+  });
+
+});
+
+app.get('/events/:id', (request, response) => {
+  var id = request.params.id;
+
+  if (!ObjectID.isValid(id)){
+    response.status(404).send({
+      message: 'ID not valid'
+    });
+  }
+
+  // Event.findById(id).then((event) => {
+  //   response.status(200).send({event});
+  // });
+
+  Event.find(id).then((event) => {
+    response.status(200).send({event});
+  });
+
+});
+
+
+
+
+app.get('/announcements', (request, response) => {
+  response.render('announcements.hbs');
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Listening to port ${PORT}.`);
