@@ -31,10 +31,6 @@ app.use(bodyParser.json());
 app.use('/api/events', EventRouter);
 
 app.get('/', (request, response) => {
-  response.render('home.hbs');
-});
-
-app.get('/events', (request, response) => {
 
   let year = moment().format('GGGG');
   let month = moment().format('M');
@@ -45,6 +41,17 @@ app.get('/events', (request, response) => {
       "$lte" : moment(`${year}, ${month}, 31`)
     }
   }).sort({'event_date': 1}).then((events) => {
+    response.render('home.hbs', {
+      current_date: new Date().toString(),
+      event_list: events
+    })
+  });
+
+});
+
+app.get('/events', (request, response) => {
+
+  Event.find({}).then((events) => {
     response.render('events.hbs', {
       current_date: new Date().toString(),
       event_list: events

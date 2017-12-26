@@ -1,0 +1,22 @@
+<div id="event_list">
+  <table class="ui single line table">
+
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Activity Name</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#event_list}}
+      <tr>
+          <td>{{dateFormat event_date "dddd, MMMM Do YYYY, h:mm a"}}</td>
+          <td>{{event_name}}</td>
+          <td>{{location}}</td>
+      </tr>
+      {{/event_list}}
+    </tbody>
+
+  </table>
+</div>
