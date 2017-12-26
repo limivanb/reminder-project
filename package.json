@@ -1,8 +1,8 @@
 {
-  "name": "announcement",
+  "name": "reminders",
   "version": "1.0.0",
-  "description": "Iloilo Philippines Stake Chat Bot Announcment Project",
-  "main": "index.js",
+  "description": "Reminders using Chat Bot",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
