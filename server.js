@@ -4,6 +4,9 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+
+var moment = require('moment');
+moment.locale('en');
 // const dateTime = require('node-datetime');
 
 var {Event} = require('./models/event');
@@ -15,6 +18,8 @@ mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
 
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -23,13 +28,23 @@ app.set('view engine','hbs');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
+app.use('/api/events', EventRouter);
+
 app.get('/', (request, response) => {
   response.render('home.hbs');
 });
 
-app.get('/show_events', (request, response) => {
+app.get('/events', (request, response) => {
 
-  Event.find().then((events) => {
+  let year = moment().format('GGGG');
+  let month = moment().format('M');
+
+  Event.find({
+    "event_date": {
+      "$gte" : moment(`${year}, ${month}, 1`),
+      "$lte" : moment(`${year}, ${month}, 31`)
+    }
+  }).sort({'event_date': 1}).then((events) => {
     response.render('events.hbs', {
       current_date: new Date().toString(),
       event_list: events
@@ -38,11 +53,10 @@ app.get('/show_events', (request, response) => {
 
 });
 
-app.get('/show_announcements', (request, response) => {
+app.get('/announcements', (request, response) => {
   response.render('announcements.hbs');
 });
 
-app.use('/events', EventRouter);
 // app.use('/api', app.router);
 
 

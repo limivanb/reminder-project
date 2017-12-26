@@ -1,6 +1,6 @@
 var express = require('express')
 var {Event} = require('./../models/event');
-
+const {ObjectID} = require('mongodb');
 
 var EventRouter = express.Router();
 
@@ -31,6 +31,7 @@ EventRouter.get('/', (request, response) => {
 
 EventRouter.get('/:id', (request, response) => {
   var id = request.params.id;
+  console.log('ID', id);
 
   if (!ObjectID.isValid(id)){
     response.status(404).send({
@@ -77,5 +78,4 @@ EventRouter.delete('/:id', (request, response) => {
   });
 });
 
-
-module.exports = EventRouter;
+module.exports = {EventRouter};
