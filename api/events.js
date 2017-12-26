@@ -1,12 +1,12 @@
 var express = require('express')
-var {Event} = require('./../models/event');
+var {EventModel} = require('./../models/event');
 const {ObjectID} = require('mongodb');
 
 var EventRouter = express.Router();
 
 EventRouter.post('/', (request, response) => {
   console.log(JSON.stringify(request.body,undefined,2));
-  var event = new Event({
+  var event = new EventModel({
     event_date: request.body.event_date,
     event_name: request.body.event_name,
     location: request.body.location
@@ -21,7 +21,7 @@ EventRouter.post('/', (request, response) => {
 
 EventRouter.get('/', (request, response) => {
 
-  Event.find().sort('event_date').then((events) => {
+  EventModel.find().sort('event_date').then((events) => {
 
     response.status(200).send({
       count: events.length,
@@ -43,7 +43,7 @@ EventRouter.get('/:id', (request, response) => {
     });
   }
 
-  Event.findById(id).then((event) => {
+  EventModel.findById(id).then((event) => {
     if (!event){
       return response.status(404).send({
         message: 'ID not exist in mongodb'
@@ -66,7 +66,7 @@ EventRouter.delete('/:id', (request, response) => {
     });
   }
 
-  Event.findByIdAndRemove(id).then((event) => {
+  EventModel.findByIdAndRemove(id).then((event) => {
     if (!event){
       return response.status(404).send({
         message: 'ID not exist in mongodb'
@@ -82,4 +82,4 @@ EventRouter.delete('/:id', (request, response) => {
   });
 });
 
-module.exports = EventRouter;
+module.exports = {EventRouter};

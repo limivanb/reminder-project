@@ -11,9 +11,8 @@ var moment = require('moment');
 moment.locale('en');
 // const dateTime = require('node-datetime');
 
-var {Event} = require('./models/event');
-
-var EventRouter = require('./api/events');
+var {EventModel} = require('./models/event');
+var {EventRouter} = require('./api/events');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
@@ -29,6 +28,11 @@ app.set('view engine','hbs');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
+// app.use((request, response, next) => {
+//   response.send('Maintenance mode');
+//   next();
+// });
+
 app.use('/api/events', EventRouter);
 
 app.get('/', (request, response) => {
@@ -36,7 +40,7 @@ app.get('/', (request, response) => {
   let year = moment().format('GGGG');
   let month = moment().format('M');
 
-  Event.find({
+  EventModel.find({
     "event_date": {
       "$gte" : moment(`${year}, ${month}, 1`),
       "$lte" : moment(`${year}, ${month}, 31`)
