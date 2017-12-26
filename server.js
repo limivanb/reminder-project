@@ -13,13 +13,11 @@ moment.locale('en');
 
 var {Event} = require('./models/event');
 
-let EventRouter = require('./api/events');
+var EventRouter = require('./api/events');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
 mongoose.Promise = global.Promise;
-
-var db = mongoose.connection;
 
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
