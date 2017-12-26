@@ -30,7 +30,7 @@ $(document).ready(() => {
     $('#btnCancel').click(() => $('#frmEventEntry').modal('hide'));
      $('#btnCreateEvent').click(function(e){
         e.preventDefault();
-        alert(ConvertFormToJSON( $('#frmEventAdd') ));
+
         $.ajax({
              url: '/api/events',
              type: 'POST',
@@ -40,20 +40,44 @@ $(document).ready(() => {
              data: ConvertFormToJSON( $('#frmEventAdd') ),
              success: function(data){
 
-                $('#frmEventEntry').modal('hide');
-                $('#frmEventAdd').trigger("reset");
+                // $('#frmEventEntry').modal('hide');
+                // $('#frmEventAdd').trigger("reset");
 
+                location.reload();
              },
              error: function(err){
                 alert(JSON.stringify(err, undefined, 2));
-
-                // $('#frmEventEntry').modal('hide');
-                // $('#frmEventAdd').trigger("reset");
              }
         });
 
         return false;
 
+     });
+
+     $('#btnDeleteEvent').click(() => {
+        // var checked = [];
+        $("input[name='selectedEvent[]']:checked").each(function (){
+            // checked.push(parseInt($(this).val()));
+
+            $(this).prop('checked', false);
+
+            $.ajax({
+                 url: '/api/events/' + $(this).attr('id'),
+                 type: 'DELETE',
+                 cache: false,
+                 dataType: 'json',
+                 contentType: "application/json",
+                 success: function(data){
+                   location.reload();
+                 },
+                 error: function(err){
+                    alert(JSON.stringify(err, undefined, 2));
+                 }
+            });
+
+        });
+
+        return false;
      });
 
      function ConvertFormToJSON(form){

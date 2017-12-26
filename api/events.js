@@ -21,7 +21,7 @@ EventRouter.post('/', (request, response) => {
 
 EventRouter.get('/', (request, response) => {
 
-  Event.find().then((events) => {
+  Event.find().sort('event_date').then((events) => {
 
     response.status(200).send({
       count: events.length,
@@ -82,4 +82,4 @@ EventRouter.delete('/:id', (request, response) => {
   });
 });
 
-module.exports = {EventRouter};
+module.exports = EventRouter;

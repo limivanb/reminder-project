@@ -4,6 +4,7 @@
 
     <thead>
       <tr>
+        <th></th>
         <th>Date</th>
         <th>Activity Name</th>
         <th>Location</th>
@@ -12,6 +13,11 @@
     <tbody>
       {{#event_list}}
       <tr>
+          <td class="collapsing">
+            <div class="ui fitted checkbox">
+              <input id="{{_id}}" name="selectedEvent[]" type="checkbox"> <label></label>
+            </div>
+          </td>
           <td>{{dateFormat event_date "dddd, MMMM Do YYYY, h:mm a"}}</td>
           <td>{{event_name}}</td>
           <td>{{location}}</td>

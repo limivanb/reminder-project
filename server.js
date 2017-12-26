@@ -12,7 +12,8 @@ moment.locale('en');
 // const dateTime = require('node-datetime');
 
 var {Event} = require('./models/event');
-var {EventRouter} = require('./api/events');
+
+let EventRouter = require('./api/events');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
