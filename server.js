@@ -5,7 +5,9 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 
+var rp = require('request-promise');
 var moment = require('moment');
+
 moment.locale('en');
 // const dateTime = require('node-datetime');
 
@@ -43,7 +45,8 @@ app.get('/', (request, response) => {
   }).sort({'event_date': 1}).then((events) => {
     response.render('home.hbs', {
       current_date: new Date().toString(),
-      event_list: events
+      event_list: events,
+      count: events.length
     })
   });
 
@@ -51,11 +54,26 @@ app.get('/', (request, response) => {
 
 app.get('/events', (request, response) => {
 
-  Event.find({}).then((events) => {
+  // Event.find({}).then((events) => {
+  //   response.render('events.hbs', {
+  //     current_date: new Date().toString(),
+  //     event_list: events
+  //   })
+  // });
+
+  var options = {
+      uri: 'http://localhost:4000/api/events',
+      json: true // Automatically parses the JSON string in the response
+  };
+
+  rp(options).then(function (docs) {
     response.render('events.hbs', {
-      current_date: new Date().toString(),
-      event_list: events
-    })
+        current_date: new Date().toString(),
+        event_list: docs.events,
+        count: docs.count
+      });
+  }).catch(function (err) {
+    response.send('Unable to get events');
   });
 
 });

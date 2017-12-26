@@ -17,6 +17,8 @@
     "mongodb": "^3.0.1",
     "mongoose": "^4.13.7",
     "node-datetime": "^2.0.3",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "semantic-ui": "^2.2.13",
     "semantic-ui-calendar": "0.0.8"
   }
