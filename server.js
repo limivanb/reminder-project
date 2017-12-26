@@ -26,6 +26,22 @@ app.get('/', (request, response) => {
   response.render('home.hbs');
 });
 
+app.get('/show_events', (request, response) => {
+
+  Event.find().then((events) => {
+    response.render('events.hbs', {
+      current_date: new Date().toString(),
+      event_list: events
+    })
+  });
+
+});
+
+app.get('/show_announcements', (request, response) => {
+  response.render('announcements.hbs');
+});
+
+// Events REST API
 app.post('/events', (request, response) => {
   console.log(JSON.stringify(request.body,undefined,2));
   var event = new Event({
@@ -41,21 +57,12 @@ app.post('/events', (request, response) => {
   });
 });
 
-app.get('/events/list', (request, response) => {
-
-  Event.find().then((events) => {
-    response.status(200).send({events});
-  });
-
-});
-
 app.get('/events', (request, response) => {
 
   Event.find().then((events) => {
-    response.render('events.hbs', {
-      current_date: new Date().toString(),
-      event_list: events
-    })
+    response.status(200).send({events});
+  },(e) => {
+    response.status(400).send(e);
   });
 
 });
@@ -69,23 +76,44 @@ app.get('/events/:id', (request, response) => {
     });
   }
 
-  // Event.findById(id).then((event) => {
-  //   response.status(200).send({event});
-  // });
+  Event.findById(id).then((event) => {
+    if (!event){
+      return response.status(404).send({
+        message: 'ID not exist in mongodb'
+      });
+    }
 
-  Event.find(id).then((event) => {
     response.status(200).send({event});
+  }).catch((e) => {
+    response.status(400).send();
   });
 
 });
 
+app.delete('/events/:id', (request, response) => {
+  var id = request.params.id;
 
+  if (!ObjectID.isValid(id)){
+    response.status(404).send({
+      message: 'ID not valid'
+    });
+  }
 
+  Event.findByIdAndRemove(id).then((event) => {
+    if (!event){
+      return response.status(404).send({
+        message: 'ID not exist in mongodb'
+      });
+    }
 
-app.get('/announcements', (request, response) => {
-  response.render('announcements.hbs');
+    response.status(200).send({
+      success: true,
+      event
+    });
+  }).catch((e) => {
+    response.status(400).send();
+  });
 });
-
 
 
 app.listen(PORT, () => {
