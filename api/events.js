@@ -22,7 +22,11 @@ EventRouter.post('/', (request, response) => {
 EventRouter.get('/', (request, response) => {
 
   Event.find().then((events) => {
-    response.status(200).send({events});
+
+    response.status(200).send({
+      count: events.length,
+      events
+    });
   },(e) => {
     response.status(400).send(e);
   });
