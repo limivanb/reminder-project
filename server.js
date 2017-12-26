@@ -7,6 +7,7 @@ const {ObjectID} = require('mongodb');
 // const dateTime = require('node-datetime');
 
 var {Event} = require('./models/event');
+var {EventRouter} = require('./api/events');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/reminders', { useMongoClient: true });
@@ -41,79 +42,8 @@ app.get('/show_announcements', (request, response) => {
   response.render('announcements.hbs');
 });
 
-// Events REST API
-app.post('/events', (request, response) => {
-  console.log(JSON.stringify(request.body,undefined,2));
-  var event = new Event({
-    event_date: request.body.event_date,
-    event_name: request.body.event_name,
-    location: request.body.location
-  });
-
-  event.save().then((doc) => {
-    response.send(doc);
-  }, (e) => {
-    response.status(400).send(e);
-  });
-});
-
-app.get('/events', (request, response) => {
-
-  Event.find().then((events) => {
-    response.status(200).send({events});
-  },(e) => {
-    response.status(400).send(e);
-  });
-
-});
-
-app.get('/events/:id', (request, response) => {
-  var id = request.params.id;
-
-  if (!ObjectID.isValid(id)){
-    response.status(404).send({
-      message: 'ID not valid'
-    });
-  }
-
-  Event.findById(id).then((event) => {
-    if (!event){
-      return response.status(404).send({
-        message: 'ID not exist in mongodb'
-      });
-    }
-
-    response.status(200).send({event});
-  }).catch((e) => {
-    response.status(400).send();
-  });
-
-});
-
-app.delete('/events/:id', (request, response) => {
-  var id = request.params.id;
-
-  if (!ObjectID.isValid(id)){
-    response.status(404).send({
-      message: 'ID not valid'
-    });
-  }
-
-  Event.findByIdAndRemove(id).then((event) => {
-    if (!event){
-      return response.status(404).send({
-        message: 'ID not exist in mongodb'
-      });
-    }
-
-    response.status(200).send({
-      success: true,
-      event
-    });
-  }).catch((e) => {
-    response.status(400).send();
-  });
-});
+app.use('/events', EventRouter);
+// app.use('/api', app.router);
 
 
 app.listen(PORT, () => {
