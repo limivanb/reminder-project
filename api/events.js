@@ -5,7 +5,7 @@ const {ObjectID} = require('mongodb');
 var EventRouter = express.Router();
 
 EventRouter.post('/', (request, response) => {
-  console.log(JSON.stringify(request.body,undefined,2));
+  // console.log(JSON.stringify(request.body,undefined,2));
   var event = new EventModel({
     event_date: request.body.event_date,
     event_name: request.body.event_name,

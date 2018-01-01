@@ -5,16 +5,10 @@
     <div class="row">
       <div class="twelve wide centered column">
         <h1 class="ui header">Events</h1>
-        <div class="ui secondary menu">
-          <a class="item">
-            <button id="btnNewEvent" class="positive ui button">New Event</button>
-          </a>
-          <a class="item">
-            <button id="btnDeleteEvent" class="negative ui button">Delete</button>
-          </a>
-          
-          <div class="right menu">
-            <a class="ui item">
+
+
+              <button id="btnNewEvent" class="positive ui basic button">New Event</button>
+              <button id="btnDeleteEvent" class="negative ui basic button">Delete</button>
               <select id="cboMonth" class="ui search dropdown">
                 <option value="">Month</option>
                 <option value="1">January</option>
@@ -30,10 +24,7 @@
                 <option value="11">November</option>
                 <option value="12">December</option>
               </select>
-            </a>
-          </div>
-        </div>
-
+      
         {{> event_listing}}
 
       </div>
